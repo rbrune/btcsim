@@ -1,0 +1,4 @@
+btcsim
+======
+
+Bitcoin Network Simulator
