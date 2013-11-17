@@ -8,7 +8,7 @@ Copyright (C) 2013 Rafael Brune mail@rbrune.de
 Purpose
 -------
 
-BTCsim is a stochastic event-based continous-time Bitcoin network simulator.
+BTCsim is a stochastic event-based continuous-time Bitcoin network simulator.
 It can be used to study block chain generation and forking, block propagation,
 network dynamics and miner/mining-pool interactions and strategies.
 
