@@ -32,4 +32,4 @@ slow-downs/lots of message passing with huge block-chain forks.
 Contributors
 ------------
 
-**Rafael Brune** mail@rbrune.de 1MNgscU4FbgSHw2LXSxuvAaqmZqfrJmdDG
+**Rafael Brune** mail@rbrune.de
