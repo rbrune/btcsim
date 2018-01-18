@@ -61,12 +61,13 @@ class Link:
 		return base_t
 
 class Miner:
-	def __init__(self, miner_id, hashrate, verifyrate, seed_block, event_q, t):
+	def __init__(self, miner_id, hashrate, verifyrate, blocksize, seed_block, event_q, t):
 		self.miner_id = miner_id
 		self.hashrate = hashrate
 		self.verifyrate = verifyrate
 		self.verifyfulluntil = 0.0
-		
+		self.blocksize = blocksize
+        
 		self.blocks = dict()
 		self.chain_head = '*'
 		
@@ -83,7 +84,7 @@ class Miner:
 
 	def mine_block(self):
 		t_next = self.t + numpy.random.exponential(1/self.hashrate, 1)[0]
-		t_size = 1024*200*numpy.random.random()
+		t_size = self.blocksize #1024*200*numpy.random.random()
 		t_block = Block(self.chain_head, self.blocks[self.chain_head].height + 1, t_next, self.miner_id, t_size, 1)
 		self.send_event(t_next, self.miner_id, 'block', t_block)
 

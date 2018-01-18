@@ -27,19 +27,20 @@ from heapq import *
 from btcsim import *
 
 class BadMiner(Miner):
-	def add_block(self, t_block):
-		self.blocks[hash(t_block)] = t_block
-		if (self.chain_head == '*'):
-			self.chain_head = hash(t_block)
-			self.mine_block()
-			return
-		# ignore all blocks that are not mined by myself
-		if (t_block.miner_id != self.miner_id):
-			return
-		if (t_block.height > self.blocks[self.chain_head].height):
-			self.chain_head = hash(t_block)
-			self.announce_block(self.chain_head)
-			self.mine_block()
+    def add_block(self, t_block):
+        self.blocks[hash(t_block)] = t_block
+        if (self.chain_head == '*'):
+            self.chain_head = hash(t_block)
+            self.mine_block()
+            return
+        # ignore all blocks that are not mined by myself
+        if (t_block.miner_id != self.miner_id):
+            self.blocks[hash(t_block)] = t_block
+            return
+        if (t_block.height > self.blocks[self.chain_head].height):
+            self.chain_head = hash(t_block)
+            self.announce_block(self.chain_head)
+            self.mine_block()
 
 
 
@@ -86,6 +87,7 @@ for i in range(numminers):
 # simulate some days of block generation
 curday = 0
 maxdays = 5*7*24*60*60
+maxdays = 1*24*60*60
 while t < maxdays:
 	t, t_event = heappop(event_q)
 	#print('%08.3f: %02d->%02d %s' % (t, t_event.orig, t_event.dest, t_event.action), t_event.payload)
